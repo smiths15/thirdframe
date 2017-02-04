@@ -4,4 +4,9 @@ class FrameController < ApplicationController
 
   end
 
+  def new
+  
+  end
+
+
 end

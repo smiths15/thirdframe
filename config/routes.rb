@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
 root "frame#index"
 
+resources :frame
+
 end
