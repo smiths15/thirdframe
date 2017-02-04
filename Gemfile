@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#simple form
+gem 'simple_form'
 #bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails'

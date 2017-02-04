@@ -16,7 +16,12 @@ RSpec.describe FrameController, type: :controller do
     end
   end
 
-
+  describe "frame#create action" do
+    it "should successfully create the new post on form" do
+      post :create
+      expect(response).to have_http_status(:success)
+    end
+  end
 
 
 
