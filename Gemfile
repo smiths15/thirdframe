@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 #bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'sass-rails', '>= 3.2'
-gem 'sprockets', '2.11.0'
+gem 'sass-rails'
+gem 'sprockets'
 
 #RESPEC for testing code
 group :development, :test do
