@@ -17,9 +17,12 @@ RSpec.describe FrameController, type: :controller do
   end
 
   describe "frame#create action" do
-    it "should successfully create the new post on form" do
-      post :create
-      expect(response).to have_http_status(:success)
+    it "should successfully create a new frame in our database" do
+      post :create, params: { frame: {message: 'Hello!'}}
+      expect(response).to redirect_to root_path
+
+      frame = Frame.last
+      expect(frame.message).to eq('Hello!') 
     end
   end
 
