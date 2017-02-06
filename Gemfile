@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#devise for user profiles
+gem 'devise'
 #simple form
 gem 'simple_form'
 #bootstrap
