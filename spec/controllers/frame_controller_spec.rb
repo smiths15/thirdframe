@@ -30,6 +30,8 @@ RSpec.describe FrameController, type: :controller do
     it "should should properly deal with validation errors" do
     post :create, params: { frame: { message: ''} }
     expect(response).to have_http_status(:unprocessable_entity)
+    expect(Frame.count).to eq 0
+    end
 
 
   end

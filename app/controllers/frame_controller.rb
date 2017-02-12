@@ -10,8 +10,14 @@ class FrameController < ApplicationController
   end
 
   def create
-  @frame = Frame.create(frame_params)
-  redirect_to root_path
+    @frame = Frame.create(frame_params)
+
+    if @frame.valid?
+      redirect_to root_path
+    else 
+      render :new, status: :unprocessable_entity
+    end
+  
   end
 
   private
