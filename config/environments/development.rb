@@ -3,7 +3,7 @@ Rails.application.configure do
 
   
   #Default URL options for devise
-  config.action_mailer.default_url_options = {host: 'localhost: 3030'}
+  config.action_mailer.default_url_options = {host: 'localhost:3030'}
 
 
   # In the development environment your application's code is reloaded on

@@ -1,17 +1,17 @@
 class FrameController < ApplicationController
-before_action :authenticate_user!
+#before_action :authenticate_user!
 
   def index
 
   end
 
   def new
-  @frame = Frame.new
+    @frame = Frame.new
   end
 
   def create
-    @frame = Frame.create(frame_params)
-    redirect_to root_path
+  @frame = Frame.create(frame_params)
+  redirect_to root_path
   end
 
   private
@@ -19,5 +19,6 @@ before_action :authenticate_user!
   def frame_params
     params.require(:frame).permit(:message)
   end
+
 
 end
