@@ -18,11 +18,7 @@ RSpec.describe FrameController, type: :controller do
     end   
 
     it "should successfully show the new form" do
-      user = User.create(
-        email:                 'fakeuser@gmail.com',
-        password:              'secretPassword',
-        password_confirmation: 'secretPassword'
-        )
+      user = FactoryGirl.create(:user)
       sign_in user 
 
       get :new
@@ -40,11 +36,7 @@ RSpec.describe FrameController, type: :controller do
 
     it "should successfully create a new frame in our database" do
 
-      user = User.create(
-        email:                 'fakeuser@gmail.com',
-        password:              'secretPassword',
-        password_confirmation: 'secretPassword'
-        )
+      user = FactoryGirl.create(:user)
       sign_in user 
 
       post :create, params: { frame: { message: 'Hello!'} }
@@ -59,11 +51,7 @@ RSpec.describe FrameController, type: :controller do
 
     it "should should properly deal with validation errors" do
 
-      user = User.create(
-        email:                 'fakeuser@gmail.com',
-        password:              'secretPassword',
-        password_confirmation: 'secretPassword'
-        )
+      user = FactoryGirl.create(:user)
       sign_in user 
 
     post :create, params: { frame: { message: ''} }
