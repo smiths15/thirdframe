@@ -11,6 +11,12 @@ RSpec.describe FrameController, type: :controller do
 
 
   describe "frame#new action" do
+    it "should require users to be logged in" do  
+      get :new
+
+      expect(response).to redirect_to new_user_session_path
+    end   
+
     it "should successfully show the new form" do
       user = User.create(
         email:                 'fakeuser@gmail.com',
@@ -25,6 +31,13 @@ RSpec.describe FrameController, type: :controller do
   end
 
   describe "frame#create action" do
+
+    it "should require users to be logged in" do  
+      post :create, params: { frame: {message: "Hello!"}}
+
+      expect(response).to redirect_to new_user_session_path
+    end  
+
     it "should successfully create a new frame in our database" do
 
       user = User.create(

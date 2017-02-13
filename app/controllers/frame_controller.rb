@@ -1,5 +1,5 @@
 class FrameController < ApplicationController
-#before_action :authenticate_user!
+before_action :authenticate_user!, only: [:new, :create]
 
   def index
 
@@ -10,14 +10,14 @@ class FrameController < ApplicationController
   end
 
   def create
-    @frame = Frame.create(frame_params)
+    @frame = current_user.frames.create(frame_params)
 
     if @frame.valid?
       redirect_to root_path
     else 
       render :new, status: :unprocessable_entity
     end
-  
+
   end
 
   private
