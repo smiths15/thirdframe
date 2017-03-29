@@ -6,6 +6,11 @@ FactoryGirl.define do
     password "secretPassword"
     password_confirmation "secretPassword"
   end
+
+  factory :frame do
+    message "hello"
+    association :user
+  end 
   
   
 end

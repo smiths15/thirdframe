@@ -54,14 +54,17 @@ RSpec.describe FrameController, type: :controller do
       user = FactoryGirl.create(:user)
       sign_in user 
 
-    post :create, params: { frame: { message: ''} }
-    expect(response).to have_http_status(:unprocessable_entity)
-    expect(Frame.count).to eq 0
+      post :create, params: { frame: { message: ''} }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Frame.count).to eq 0
     end
-
 
   end
 
-
+  describe "frame#show action" do
+    it "should successfully show the page if the frame is found" do
+      frame = FactoryGirl.create(:frame)
+    end
+  end
 
 end

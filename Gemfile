@@ -9,7 +9,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails'
 gem 'sprockets'
 
-#RESPEC for testing code
+#RSPEC for testing code
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~>4.0'
