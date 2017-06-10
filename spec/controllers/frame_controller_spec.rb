@@ -64,7 +64,19 @@ RSpec.describe FrameController, type: :controller do
   describe "frame#show action" do
     it "should successfully show the page if the frame is found" do
       frame = FactoryGirl.create(:frame)
+      get :show, params: { id: frame.id}
+      expect(response).to have_http_status(:success)
     end
+
+    it "should return a 404 error if the frame is not found" do
+      frame = FactoryGirl.create(:frame)
+      get :show, params: { id: 'TACOCAT'}
+      expect(response).to have_http_status(:not_found)
+    end
+  
+
   end
+
+
 
 end

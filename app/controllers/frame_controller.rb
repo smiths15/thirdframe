@@ -20,6 +20,17 @@ before_action :authenticate_user!, only: [:new, :create]
 
   end
 
+  def show
+    @frame = Frame.find_by_id(params[:id])
+
+    if @frame.blank?
+      render plain: 'Not Found :(', status: :not_found
+    end
+
+
+
+  end
+
   private
 
   def frame_params
