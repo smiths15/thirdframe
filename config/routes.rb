@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   root "frame#index"
 
-  resources :frame, only: [:new, :create, :show, :edit, :update]
+  resources :frame, only: [:new, :create, :show, :edit, :update, :destroy]
 
 end

@@ -42,6 +42,14 @@ before_action :authenticate_user!, only: [:new, :create]
     end
   end
 
+  def destroy
+    @frame = Frame.find_by_id(params[:id])
+    return render_not_found if @frame.blank?
+
+    @frame.destroy
+    redirect_to root_path
+  end
+
   private
 
   def frame_params

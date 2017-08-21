@@ -107,6 +107,22 @@ RSpec.describe FrameController, type: :controller do
     end
   end
 
+  describe "frame#destroy action" do
+    it "should allow user to destroy frame" do
+      frame = FactoryGirl.create(:frame)
+      delete :destroy, params: {id: frame.id}
+      expect(response).to redirect_to root_path
+      frame = Frame.find_by_id(frame.id)
+      expect(frame).to eq nil
+    end
+
+    it "should return a 404 message if we cannot find a frame with the id that is specified" do
+      frame = FactoryGirl.create(:frame)
+      delete :destroy, params: {id: "Sapceduck"}
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
 
 
 end
