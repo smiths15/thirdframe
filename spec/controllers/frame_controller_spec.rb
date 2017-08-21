@@ -27,7 +27,6 @@ RSpec.describe FrameController, type: :controller do
   end
 
   describe "frame#create action" do
-
     it "should require users to be logged in" do  
       post :create, params: { frame: {message: "Hello!"}}
 
@@ -35,7 +34,6 @@ RSpec.describe FrameController, type: :controller do
     end  
 
     it "should successfully create a new frame in our database" do
-
       user = FactoryGirl.create(:user)
       sign_in user 
 
@@ -45,12 +43,9 @@ RSpec.describe FrameController, type: :controller do
       frame = Frame.last
       expect(frame.message).to eq("Hello!")
       expect(frame.user).to eq(user)
-
-
     end
 
     it "should should properly deal with validation errors" do
-
       user = FactoryGirl.create(:user)
       sign_in user 
 
@@ -58,7 +53,6 @@ RSpec.describe FrameController, type: :controller do
       expect(response).to have_http_status(:unprocessable_entity)
       expect(Frame.count).to eq 0
     end
-
   end
 
   describe "frame#show action" do
@@ -73,8 +67,44 @@ RSpec.describe FrameController, type: :controller do
       get :show, params: { id: 'TACOCAT'}
       expect(response).to have_http_status(:not_found)
     end
-  
+  end
 
+  describe "frame#edit action" do
+    it "should successfully show the edit form if the frame is found" do
+      frame = FactoryGirl.create(:frame)
+      get :edit, params: { id: frame.id}
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error if the frame is not found" do
+      frame = FactoryGirl.create(:frame)
+      get :edit, params: { id: 'TACOCAT'}
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe "frame#update action" do
+    it "should allow users to successfully update frames" do
+      frame = FactoryGirl.create(:frame, message: "Initial Value")
+      patch :update, params: { id: frame.id, frame: {message: "Changed"}}
+      expect(response).to redirect_to root_path
+      frame.reload
+      expect(frame.message).to eq "Changed"  
+    end
+
+    it "should have http 404 error if the frame is not found" do
+      frame = FactoryGirl.create(:frame, message: "Initial Value")
+      patch :update, params: { id: "YOLOSWAG", frame: {message: "Changed"}}
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "should render the edit form with an http status of unprocessable_entity" do
+      frame = FactoryGirl.create(:frame, message: "Initial Value")
+      patch :update, params: { id: frame.id, frame: {message: ""}}
+      expect(response).to have_http_status(:unprocessable_entity)
+      frame.reload
+      expect(frame.message).to eq "Initial Value"
+    end
   end
 
 
