@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#Enable file uploads
+gem 'carrierwave', '~> 1.0'
+
 #devise for user profiles
 gem 'devise'
 #simple form

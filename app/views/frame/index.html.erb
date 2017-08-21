@@ -1,1 +1,8 @@
 <h1>ThirdFrame!</h1>
+
+<% @frame.each do |frame| %>
+  <div>
+    <%= frame.message %>
+    <%= image_tag frame.pciture %>
+  </div>
+<% end %>

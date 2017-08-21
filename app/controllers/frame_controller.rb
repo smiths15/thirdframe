@@ -2,7 +2,7 @@ class FrameController < ApplicationController
 before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-
+    @frame = Frame.all
   end
 
   def new
@@ -52,7 +52,7 @@ before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destro
   private
 
   def frame_params
-    params.require(:frame).permit(:message)
+    params.require(:frame).permit(:message, :picture)
   end
 
   def render_not_found(status=:not_found)
