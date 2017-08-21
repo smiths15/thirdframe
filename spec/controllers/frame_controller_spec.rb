@@ -70,22 +70,53 @@ RSpec.describe FrameController, type: :controller do
   end
 
   describe "frame#edit action" do
+    it "shouldn't let a user who did not create the frame edit a frame" do
+      frame = FactoryGirl.create(:frame)
+      user = FactoryGirl.create(:user)
+      sign_in user
+      get :edit, params: {id: frame.id}
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "shouldn't let unauthenticatioed users edit a frame" do
+      frame = FactoryGirl.create(:frame)
+      get :edit, params: {id: frame.id}
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should successfully show the edit form if the frame is found" do
       frame = FactoryGirl.create(:frame)
+      sign_in frame.user
       get :edit, params: { id: frame.id}
       expect(response).to have_http_status(:success)
     end
 
     it "should return a 404 error if the frame is not found" do
       frame = FactoryGirl.create(:frame)
+      sign_in frame.user
       get :edit, params: { id: 'TACOCAT'}
       expect(response).to have_http_status(:not_found)
     end
   end
 
   describe "frame#update action" do
+    it "shouldn't let a user who did not create the frame update a frame" do
+      frame = FactoryGirl.create(:frame)
+      user = FactoryGirl.create(:user)
+      sign_in user
+      patch :update, params: {id: frame.id, frame: {message: "wahoo"}}
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "shouldn't let unauthenticatioed users update a frame" do
+      frame = FactoryGirl.create(:frame)
+      patch :update, params: {id: frame.id, frame: {message: "Hello"}}
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should allow users to successfully update frames" do
       frame = FactoryGirl.create(:frame, message: "Initial Value")
+      sign_in frame.user
       patch :update, params: { id: frame.id, frame: {message: "Changed"}}
       expect(response).to redirect_to root_path
       frame.reload
@@ -94,12 +125,14 @@ RSpec.describe FrameController, type: :controller do
 
     it "should have http 404 error if the frame is not found" do
       frame = FactoryGirl.create(:frame, message: "Initial Value")
+      sign_in frame.user
       patch :update, params: { id: "YOLOSWAG", frame: {message: "Changed"}}
       expect(response).to have_http_status(:not_found)
     end
 
     it "should render the edit form with an http status of unprocessable_entity" do
       frame = FactoryGirl.create(:frame, message: "Initial Value")
+      sign_in frame.user
       patch :update, params: { id: frame.id, frame: {message: ""}}
       expect(response).to have_http_status(:unprocessable_entity)
       frame.reload
@@ -108,8 +141,23 @@ RSpec.describe FrameController, type: :controller do
   end
 
   describe "frame#destroy action" do
+    it "shouldn't let a user who did not create the frame destroy a frame" do
+      frame = FactoryGirl.create(:frame)
+      user = FactoryGirl.create(:user)
+      sign_in user
+      delete :destroy, params: {id: frame.id}
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "shouldn't let unauthenticatioed users destroy a frame" do
+      frame = FactoryGirl.create(:frame)
+      delete :destroy, params: {id: frame.id}
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should allow user to destroy frame" do
       frame = FactoryGirl.create(:frame)
+      sign_in frame.user
       delete :destroy, params: {id: frame.id}
       expect(response).to redirect_to root_path
       frame = Frame.find_by_id(frame.id)
@@ -118,10 +166,12 @@ RSpec.describe FrameController, type: :controller do
 
     it "should return a 404 message if we cannot find a frame with the id that is specified" do
       frame = FactoryGirl.create(:frame)
+      sign_in frame.user
       delete :destroy, params: {id: "Sapceduck"}
       expect(response).to have_http_status(:not_found)
     end
   end
+
 
 
 

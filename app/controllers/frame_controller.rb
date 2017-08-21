@@ -1,5 +1,5 @@
 class FrameController < ApplicationController
-before_action :authenticate_user!, only: [:new, :create]
+before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
 
@@ -11,7 +11,6 @@ before_action :authenticate_user!, only: [:new, :create]
 
   def create
     @frame = current_user.frames.create(frame_params)
-
     if @frame.valid?
       redirect_to root_path
     else 
@@ -27,14 +26,14 @@ before_action :authenticate_user!, only: [:new, :create]
   def edit
     @frame = Frame.find_by_id(params[:id])
     return render_not_found if @frame.blank?
+    return render_not_found(:forbidden) if @frame.user != current_user 
   end
 
   def update
     @frame = Frame.find_by_id(params[:id])
     return render_not_found if @frame.blank?
-
+    return render_not_found(:forbidden) if @frame.user != current_user  
     @frame.update_attributes(frame_params)
-    
     if @frame.valid?
       redirect_to root_path
     else 
@@ -45,7 +44,7 @@ before_action :authenticate_user!, only: [:new, :create]
   def destroy
     @frame = Frame.find_by_id(params[:id])
     return render_not_found if @frame.blank?
-
+    return render_not_found(:forbidden) if @frame.user != current_user 
     @frame.destroy
     redirect_to root_path
   end
@@ -56,8 +55,8 @@ before_action :authenticate_user!, only: [:new, :create]
     params.require(:frame).permit(:message)
   end
 
-  def render_not_found
-    render plain: 'Not Found :(', status: :not_found
+  def render_not_found(status=:not_found)
+    render plain: "#{status.to_s.titleize} :(", status: status
   end
 
 
