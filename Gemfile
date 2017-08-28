@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+#allow carrierwave to communicate with AWS S3
+gem 'fog-aws'
+
+#secure sensitive info
+gem 'figaro'
+
 #Enable file uploads
 gem 'carrierwave', '~> 1.0'
 

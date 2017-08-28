@@ -9,6 +9,7 @@ FactoryGirl.define do
 
   factory :frame do
     message "hello"
+    picture { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'picture.png'), 'image/png')}
     association :user
   end 
   
