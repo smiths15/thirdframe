@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root "frame#index"
 
-  resources :frame, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :frame do
+    resources :comments, only: [:create]
+  end
 
 end
