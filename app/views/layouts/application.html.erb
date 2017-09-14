@@ -6,30 +6,46 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Pacifico" rel="stylesheet">
+
   </head>
   
   <body>
+    <div class="top-nav">
+      <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
 
-    <% if current_user %>
-      You're signed is as <%= current_user.email %>.
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Sign Up", new_user_registration_path %>      
-    <% end %>  
-    
-    <br />
-    
-    <% if notice.present? %>
-      <p class="alert alert-info"><%= notice %></p>
-    <% end %>
+        <div class="brand float-left">
+          ThirdFrame
+        </div>
 
-    <br />
-    
-    <% if alert.present? %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+        <div class="add float-">
+          <% if current_user %>
+            You're signed is as <%= current_user.email %>.
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path %>
+            <%= link_to "Sign Up", new_user_registration_path %>      
+          <% end %>  
+          
+          <br />
+          
+          <% if notice.present? %>
+            <p class="alert alert-info"><%= notice %></p>
+          <% end %>
 
+          <br />
+          
+          <% if alert.present? %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+        </div>
+      </div>
+      
+      <br class="clear-fix" />
+
+    </div>  
+    
     <%= yield %>
   </body>
 </html>
