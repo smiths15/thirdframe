@@ -1,17 +1,31 @@
 body {
-  background-color: #fafafa;
+  background-color: rgba(126,17,136,1);
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .top-nav {
   background-color: white;
   border-bottom: #edeeee 1px solid;
-  height: 70px;
-  padding-top: 15px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.top-nav .brand a {
+  text-decoration: none;
+}
+
+.top-nav .brand {
+  float: left;
+}
+
+.top-nav .brand a:hover {
+  color: #7e1188;
 }
 
 .top-nav .add {
-  margin-toop: 10px;
+  margin-top: 20px;
+  float: right;
 }
 
 .top-nav .add a {
@@ -36,4 +50,92 @@ body {
   color: #125688;
   font-size: 30px;
   font-family: 'Pacifico', cursive;
+  float: left;
+}
+
+.card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  border: 1px solid #e8e8e8;
+  margin-top: 40px;
+  padding: 0;
+}
+
+.handle {
+  margin: 10px;
+  color: #125688;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.card p, .card .message {
+  font-size: 18px;
+  margin: 20px;
+}
+
+.card.form {
+  padding: 20px;
+}
+
+label {
+  font-size: 18px;
+}
+
+input {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.my-btn {
+  background-color: #125688;
+  width: 100%;
+  border: none;
+  font-size: 24px;
+  color: white;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.input.boolean {
+  margin-left: 18px;
+  margin-top: 5px;
+}
+
+.input.boolean label {
+  margin-top: 5px;
+  line-height: 44px;
+}
+
+.frame-actions a {
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.frame-actions {
+  float: right;
+}
+
+.comments {
+  padding: 20px;
+}
+
+.comment {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.comment_handle {
+  color: #125688;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.clear-fix {
+  clear: both;
 }

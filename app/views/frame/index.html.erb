@@ -1,8 +1,42 @@
-<h1>ThirdFrame!</h1>
 
-<% @frame.each do |frame| %>
-  <div>
-    <%= frame.message %>
-    <%= image_tag frame.pciture %>
-  </div>
-<% end %>
+
+<div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 card form">
+  <% @frame.each do |frame| %>
+    <div>
+      <div class="handle"><%= frame.user.email%></div>
+      <%= image_tag frame.picture, class: 'img-fluid' %>
+      <p><%= frame.message %></p>
+      
+      <div class="frame-actions">
+        <% if current_user && current_user == frame.user %>
+        <%= link_to 'Edit', edit_frame_path(frame) %>
+        <%= link_to 'Destroy', frame_path(frame), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+      </div>
+      
+      <br class="clear-fix"/>
+
+      <div class="comments">
+        <h3>Comments</h3>
+        <% frame.comments.each do |comment| %>
+          <div class="comment">
+            <span class="comment_handle">
+              <%= comment.user.email %>
+            </span>
+            
+            <%= comment.message %>
+
+          </div>
+        <% end %>
+
+        <h4>Add a Comment</h4>
+
+        <%= simple_form_for Comment.new, url: frame_comments_path(frame) do |f| %>
+          <%= f.input :message %>
+          <%= f.submit 'Add Comment', class: 'my-btn' %>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
