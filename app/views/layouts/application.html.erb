@@ -13,7 +13,7 @@
   
   <body>
     <div class="top-nav">
-      <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+      <div class="col-10 offset-1 col-xs-8 offset-xs-2 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
 
         <div class="brand">
           <%= link_to "ThirdFrame", root_path %>
@@ -21,7 +21,7 @@
 
         <div class="add">
           <% if current_user %>
-            Welcome <%= current_user.email %>.
+            Welcome <%= current_user.email %>
             <%= link_to "New Post", new_frame_path %>
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
           <% else %>

@@ -6,9 +6,10 @@ body {
 .top-nav {
   background-color: white;
   border-bottom: #edeeee 1px solid;
-  height: 100px;
+  height: 70px;
   padding: 10px;
   border-radius: 5px;
+  white-space: wrap;
 }
 
 .top-nav .brand a {
@@ -23,9 +24,12 @@ body {
   color: #7e1188;
 }
 
+
 .top-nav .add {
   margin-top: 20px;
-  float: right;
+  position: absolute;
+  left: 50%;
+  padding-right: 10px;
 }
 
 .top-nav .add a {
