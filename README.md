@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ThirdFrame is a web app, similar to Instagram, where users can post and comment on their pictures.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Unlike the other web apps, I built ThirdFrame using the test driven development approach. I implemented tests to validate posts, pictures, and comments. With the use of FactoryGirl, I ran tests with dryer code.
