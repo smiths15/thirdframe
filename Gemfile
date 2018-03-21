@@ -18,6 +18,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails'
 gem 'sprockets'
 
+gem 'nokogiri', '~> 1.8.1'
+gem 'loofah', '~>2.2.1'
+
 #RSPEC for testing code
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
